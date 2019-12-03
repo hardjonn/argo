@@ -1,0 +1,43 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@argo/ui": ["libs/ui/src/index.ts"],
+      "@argo/data": ["libs/data/src/index.ts"],
+      "@argo/layouts": ["libs/layouts/src/index.ts"],
+      "@argo/feature-contact-info": ["libs/feature-contact-info/src/index.ts"],
+      "@argo/ui-contact-info": ["libs/ui-contact-info/src/index.ts"],
+      "@argo/feature-not-found-page": [
+        "libs/feature-not-found-page/src/index.ts"
+      ],
+      "@env": ["apps/xavier/src/environments/environment"],
+      "@argo/ui-footer": ["libs/ui-footer/src/index.ts"],
+      "@argo/ui-app-bar": ["libs/ui-app-bar/src/index.ts"],
+      "@argo/feature-home-page": ["libs/feature-home-page/src/index.ts"],
+      "@argo/ui-image": ["libs/ui-image/src/index.ts"],
+      "@argo/ui-text-form-field": ["libs/ui-text-form-field/src/index.ts"],
+      "@argo/ui-select-form-field": ["libs/ui-select-form-field/src/index.ts"],
+      "@argo/ui-date-form-field": ["libs/ui-date-form-field/src/index.ts"],
+      "@argo/ui-annual-premium": ["libs/ui-annual-premium/src/index.ts"],
+      "@argo/ui-error-message-card": [
+        "libs/ui-error-message-card/src/index.ts"
+      ],
+      "@argo/feature-quote-page": ["libs/feature-quote-page/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

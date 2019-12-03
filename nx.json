@@ -1,0 +1,66 @@
+{
+  "npmScope": "argo",
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "xavier": {
+      "tags": []
+    },
+    "xavier-e2e": {
+      "tags": []
+    },
+    "ui": {
+      "tags": []
+    },
+    "data": {
+      "tags": []
+    },
+    "layouts": {
+      "tags": []
+    },
+    "feature-contact-info": {
+      "tags": []
+    },
+    "ui-contact-info": {
+      "tags": []
+    },
+    "feature-not-found-page": {
+      "tags": []
+    },
+    "ui-footer": {
+      "tags": []
+    },
+    "ui-app-bar": {
+      "tags": []
+    },
+    "feature-home-page": {
+      "tags": []
+    },
+    "ui-image": {
+      "tags": []
+    },
+    "ui-text-form-field": {
+      "tags": []
+    },
+    "ui-select-form-field": {
+      "tags": []
+    },
+    "ui-date-form-field": {
+      "tags": []
+    },
+    "ui-annual-premium": {
+      "tags": []
+    },
+    "ui-error-message-card": {
+      "tags": []
+    },
+    "feature-quote-page": {
+      "tags": []
+    }
+  }
+}

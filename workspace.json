@@ -1,0 +1,601 @@
+{
+  "version": 1,
+  "projects": {
+    "xavier": {
+      "root": "apps/xavier",
+      "sourceRoot": "apps/xavier/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/xavier",
+            "index": "apps/xavier/src/index.html",
+            "main": "apps/xavier/src/main.tsx",
+            "polyfills": "apps/xavier/src/polyfills.ts",
+            "tsConfig": "apps/xavier/tsconfig.app.json",
+            "assets": ["apps/xavier/src/favicon.ico", "apps/xavier/src/assets"],
+            "styles": ["apps/xavier/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/babel"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/xavier/src/environments/environment.ts",
+                  "with": "apps/xavier/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "xavier:build",
+            "host": "0.0.0.0",
+            "port": 4200,
+            "proxyConfig": "proxy.config.json",
+            "disableHostCheck": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "xavier:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/xavier/.eslintrc",
+            "tsConfig": [
+              "apps/xavier/tsconfig.app.json",
+              "apps/xavier/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/xavier/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/xavier/jest.config.js",
+            "tsConfig": "apps/xavier/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "xavier-e2e": {
+      "root": "apps/xavier-e2e",
+      "sourceRoot": "apps/xavier-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/xavier-e2e/cypress.json",
+            "tsConfig": "apps/xavier-e2e/tsconfig.e2e.json",
+            "devServerTarget": "xavier:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "xavier:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/xavier-e2e/.eslintrc",
+            "tsConfig": ["apps/xavier-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/xavier-e2e/**"]
+          }
+        }
+      }
+    },
+    "ui": {
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/ui/.eslintrc",
+            "tsConfig": [
+              "libs/ui/tsconfig.lib.json",
+              "libs/ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "tsConfig": "libs/ui/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "data": {
+      "root": "libs/data",
+      "sourceRoot": "libs/data/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/data/.eslintrc",
+            "tsConfig": [
+              "libs/data/tsconfig.lib.json",
+              "libs/data/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/data/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data/jest.config.js",
+            "tsConfig": "libs/data/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "layouts": {
+      "root": "libs/layouts",
+      "sourceRoot": "libs/layouts/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/layouts/.eslintrc",
+            "tsConfig": [
+              "libs/layouts/tsconfig.lib.json",
+              "libs/layouts/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/layouts/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/layouts/jest.config.js",
+            "tsConfig": "libs/layouts/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "feature-contact-info": {
+      "root": "libs/feature-contact-info",
+      "sourceRoot": "libs/feature-contact-info/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/feature-contact-info/.eslintrc",
+            "tsConfig": [
+              "libs/feature-contact-info/tsconfig.lib.json",
+              "libs/feature-contact-info/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/feature-contact-info/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/feature-contact-info/jest.config.js",
+            "tsConfig": "libs/feature-contact-info/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ui-contact-info": {
+      "root": "libs/ui-contact-info",
+      "sourceRoot": "libs/ui-contact-info/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/ui-contact-info/.eslintrc",
+            "tsConfig": [
+              "libs/ui-contact-info/tsconfig.lib.json",
+              "libs/ui-contact-info/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui-contact-info/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui-contact-info/jest.config.js",
+            "tsConfig": "libs/ui-contact-info/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "feature-not-found-page": {
+      "root": "libs/feature-not-found-page",
+      "sourceRoot": "libs/feature-not-found-page/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/feature-not-found-page/.eslintrc",
+            "tsConfig": [
+              "libs/feature-not-found-page/tsconfig.lib.json",
+              "libs/feature-not-found-page/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/feature-not-found-page/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/feature-not-found-page/jest.config.js",
+            "tsConfig": "libs/feature-not-found-page/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ui-footer": {
+      "root": "libs/ui-footer",
+      "sourceRoot": "libs/ui-footer/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/ui-footer/.eslintrc",
+            "tsConfig": [
+              "libs/ui-footer/tsconfig.lib.json",
+              "libs/ui-footer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui-footer/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui-footer/jest.config.js",
+            "tsConfig": "libs/ui-footer/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ui-app-bar": {
+      "root": "libs/ui-app-bar",
+      "sourceRoot": "libs/ui-app-bar/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/ui-app-bar/.eslintrc",
+            "tsConfig": [
+              "libs/ui-app-bar/tsconfig.lib.json",
+              "libs/ui-app-bar/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui-app-bar/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui-app-bar/jest.config.js",
+            "tsConfig": "libs/ui-app-bar/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "feature-home-page": {
+      "root": "libs/feature-home-page",
+      "sourceRoot": "libs/feature-home-page/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/feature-home-page/.eslintrc",
+            "tsConfig": [
+              "libs/feature-home-page/tsconfig.lib.json",
+              "libs/feature-home-page/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/feature-home-page/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/feature-home-page/jest.config.js",
+            "tsConfig": "libs/feature-home-page/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ui-image": {
+      "root": "libs/ui-image",
+      "sourceRoot": "libs/ui-image/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/ui-image/.eslintrc",
+            "tsConfig": [
+              "libs/ui-image/tsconfig.lib.json",
+              "libs/ui-image/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui-image/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui-image/jest.config.js",
+            "tsConfig": "libs/ui-image/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ui-text-form-field": {
+      "root": "libs/ui-text-form-field",
+      "sourceRoot": "libs/ui-text-form-field/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/ui-text-form-field/.eslintrc",
+            "tsConfig": [
+              "libs/ui-text-form-field/tsconfig.lib.json",
+              "libs/ui-text-form-field/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui-text-form-field/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui-text-form-field/jest.config.js",
+            "tsConfig": "libs/ui-text-form-field/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ui-select-form-field": {
+      "root": "libs/ui-select-form-field",
+      "sourceRoot": "libs/ui-select-form-field/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/ui-select-form-field/.eslintrc",
+            "tsConfig": [
+              "libs/ui-select-form-field/tsconfig.lib.json",
+              "libs/ui-select-form-field/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui-select-form-field/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui-select-form-field/jest.config.js",
+            "tsConfig": "libs/ui-select-form-field/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ui-date-form-field": {
+      "root": "libs/ui-date-form-field",
+      "sourceRoot": "libs/ui-date-form-field/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/ui-date-form-field/.eslintrc",
+            "tsConfig": [
+              "libs/ui-date-form-field/tsconfig.lib.json",
+              "libs/ui-date-form-field/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui-date-form-field/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui-date-form-field/jest.config.js",
+            "tsConfig": "libs/ui-date-form-field/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ui-annual-premium": {
+      "root": "libs/ui-annual-premium",
+      "sourceRoot": "libs/ui-annual-premium/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/ui-annual-premium/.eslintrc",
+            "tsConfig": [
+              "libs/ui-annual-premium/tsconfig.lib.json",
+              "libs/ui-annual-premium/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui-annual-premium/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui-annual-premium/jest.config.js",
+            "tsConfig": "libs/ui-annual-premium/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ui-error-message-card": {
+      "root": "libs/ui-error-message-card",
+      "sourceRoot": "libs/ui-error-message-card/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/ui-error-message-card/.eslintrc",
+            "tsConfig": [
+              "libs/ui-error-message-card/tsconfig.lib.json",
+              "libs/ui-error-message-card/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui-error-message-card/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui-error-message-card/jest.config.js",
+            "tsConfig": "libs/ui-error-message-card/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "feature-quote-page": {
+      "root": "libs/feature-quote-page",
+      "sourceRoot": "libs/feature-quote-page/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/feature-quote-page/.eslintrc",
+            "tsConfig": [
+              "libs/feature-quote-page/tsconfig.lib.json",
+              "libs/feature-quote-page/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/feature-quote-page/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/feature-quote-page/jest.config.js",
+            "tsConfig": "libs/feature-quote-page/tsconfig.spec.json"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/react": {
+      "application": {
+        "style": "scss",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "scss"
+      },
+      "library": {
+        "style": "scss",
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/web": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "xavier"
+}

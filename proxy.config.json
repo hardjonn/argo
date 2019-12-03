@@ -1,0 +1,8 @@
+{
+  "/v1/ArgoChallenge": {
+    "target": "https://j950rrlta9.execute-api.us-east-2.amazonaws.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  workspace:
+    build:
+      context: .
+      dockerfile: ./docker/workspace/Dockerfile
+    container_name: argo_workspace01
+    ports:
+      - 4200:4200
