@@ -33,7 +33,7 @@ Run
 
 > nx serve
 
-Visit to http://localhost:4200
+Visit http://localhost:4200
 
 If run cypres (e2e) locally you will get an interactive mode with Test Runner
 
@@ -51,4 +51,4 @@ It will run tests during container building
 
 And it will run the application
 
-Visit to http://localhost:4200
+Visit http://localhost:4200
